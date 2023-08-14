@@ -15,16 +15,12 @@ public class BitVector {
         this.size = initialSize;
     }
 
-    public BitVector(String fileName) {
+     public BitVector(String fileName) {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(fileName));
             String vectorString = reader.readLine().replace("_", "");
-            if (vectorString == null) {
-                this.size = 0;
-            }
-            else {
-                this.size = vectorString.length();
-            }
+            reader.close();
+            this.size = vectorString.length();
             if (this.size % 8 == 0) {
                 vector = new byte[this.size / 8];
             } else {
@@ -40,7 +36,7 @@ public class BitVector {
             e.printStackTrace();
         }
     }
-
+    
     public void set(int index) {
         indexOutOfBounds(index);
         if (!isSet(index)) {
